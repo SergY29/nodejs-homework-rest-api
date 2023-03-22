@@ -2,7 +2,7 @@ const User = require('../../models/auth')
 const { NotEniqueMailError } = require('../../helpers/errors')
 
 
-const registration = async (email, password) => {
+const registration = async (email, password, avatarURL) => {
     const userCheck = await User.findOne({ email });
 
     if (userCheck) {
@@ -10,7 +10,8 @@ const registration = async (email, password) => {
     } else {
         const user = new User({
             email,
-            password
+            password,
+            avatarURL,
         })
 
         await user.save();

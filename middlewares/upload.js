@@ -1,5 +1,6 @@
 const multer = require('multer')
 const path = require('path');
+const { v4: uuidv4 } = require('uuid');
 
 
 
@@ -8,9 +9,8 @@ const uploadDir = path.join(__dirname, "../", "tmp")
 const storageConfig = multer.diskStorage({
     destination: uploadDir,
     filename: (req, file, cb) => {
-        const { _id } = req.user
         const [extention] = file.originalname.split(".").reverse()
-        cb(null, `${_id}.${extention}`);
+        cb(null, `${uuidv4()}.${extention}`);
     },
     limits: {
         fileSize: 1048576,

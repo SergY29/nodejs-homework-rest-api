@@ -8,7 +8,9 @@ const uploadDir = path.join(__dirname, "../", "tmp")
 const storageConfig = multer.diskStorage({
     destination: uploadDir,
     filename: (req, file, cb) => {
-        cb(null, file.originalname);
+        const { _id } = req.user
+        const [extention] = file.originalname.split(".").reverse()
+        cb(null, `${_id}.${extention}`);
     },
     limits: {
         fileSize: 1048576,

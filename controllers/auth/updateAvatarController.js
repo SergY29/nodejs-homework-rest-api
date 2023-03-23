@@ -1,3 +1,4 @@
+const Jimp = require("jimp");
 const path = require('path');
 const fs = require('fs').promises;
 const { NotAutorizedError } = require('../../helpers/errors')
@@ -9,14 +10,13 @@ const avatarsDir = path.join(__dirname, "../../", "public", "avatars")
 const updateAvatarController = async (req, res, next) => {
 
     try {
-        const { path: tempUpload, filename } = req.file;
         const { _id } = req.user;
-        // const [extention] = filename.split(".").reverce();
-        // const avatarName = `${_id}.${extention}`;
+        const { path: tempUpload, filename } = req.file;
+
+        const img = await Jimp.read(tempUpload);
+        await img.autocrop().cover(250, 250, Jimp.HORIZONTAL_ALIGN_CENTER || Jimp.VERTICAL_ALIGN_MIDDLE).writeAsync(tempUpload)
 
         const resultUpload = path.join(avatarsDir, filename);
-        console.log("resultUpload", resultUpload)
-
         await fs.rename(tempUpload, resultUpload);
 
         const avatarURL = path.join("avatars", resultUpload);
@@ -29,7 +29,7 @@ const updateAvatarController = async (req, res, next) => {
 
     } catch (error) {
         await fs.unlink(req.file.path)
-        throw error
+        throw new NotAutorizedError('Not authorized')
     }
 }
 

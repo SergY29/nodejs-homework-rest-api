@@ -3,6 +3,7 @@ const changeContactMiddleware = require('./changeContactMiddleware')
 const addNewUserMiddleware = require('./addNewUserMiddleware')
 const authMiddleware = require('./authMiddleware')
 const updateSubscriptionMiddleware = require('./updateSubscriptionMiddleware')
+const upload = require('./upload')
 
 
 
@@ -12,5 +13,6 @@ module.exports = {
     addNewUserMiddleware,
     authMiddleware,
     updateSubscriptionMiddleware,
+    upload,
 
 };

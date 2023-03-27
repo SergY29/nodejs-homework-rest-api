@@ -4,8 +4,6 @@ const { v4: uuidv4 } = require('uuid');
 const User = require('../../models/auth')
 const { NotEniqueMailError } = require('../../helpers/errors')
 const { sendMail } = require('../../helpers/sendMail')
-const { registration } = require('../../service/auth')
-
 
 
 const registarationController = async (req, res, next) => {
@@ -27,7 +25,7 @@ const registarationController = async (req, res, next) => {
         text: 'Підтвердження реєстрації',
         html: `<a href="localhost:3035/api/users/verify/${verificationToken}" target="_blank">Натисніть для підтвердження</a>`,
     }
-    await registration(email, password, avatarURL)
+
 
     await sendMail(mail)
 
@@ -36,8 +34,8 @@ const registarationController = async (req, res, next) => {
         "user": {
             "email": result.email,
             "subscription": result.subscription,
-            email,
-            "subscription": "starter"
         }
     })
 }
+
+module.exports = registarationController

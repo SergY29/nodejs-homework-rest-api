@@ -6,6 +6,14 @@ class NotAutorizedError extends Error {
     }
 };
 
+class NotVerifyError extends Error {
+    constructor(message) {
+        super(message);
+        this.status = 404;
+
+    }
+};
+
 class NotEniqueMailError extends Error {
     constructor(message) {
         super(message);
@@ -16,6 +24,7 @@ class NotEniqueMailError extends Error {
 
 module.exports = {
     NotAutorizedError,
-    NotEniqueMailError
+    NotEniqueMailError,
+    NotVerifyError
 
 };

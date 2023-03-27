@@ -22,8 +22,10 @@ const registarationController = async (req, res, next) => {
     const mail = {
         to: email,
         subject: 'Підтвердження реєстрації',
-        text: 'Підтвердження реєстрації',
-        html: `<a href="localhost:3035/api/users/verify/${verificationToken}" target="_blank">Натисніть для підтвердження</a>`,
+        text: 'Для підтвердження перейдіть за поcиланням:',
+        html: `<a href="http://localhost:3035/api/users/verify/${verificationToken}"
+        >Посилання для підтвердження реєстрації</a>`,
+
     }
 
 

@@ -12,6 +12,13 @@ const login = async (email, password) => {
         throw new NotAutorizedError('Email or password is wrong')
     }
 
+    if (user.verify === false) {
+        throw new NotAutorizedError('user not verified')
+    }
+
+
+
+
     if (!await bcrypt.compare(password, user.password)) {
         throw new NotAutorizedError('Email or password is wrong')
     }

@@ -4,6 +4,7 @@ const addNewUserMiddleware = require('./addNewUserMiddleware')
 const authMiddleware = require('./authMiddleware')
 const updateSubscriptionMiddleware = require('./updateSubscriptionMiddleware')
 const upload = require('./upload')
+const verifyMiddleware = require('./verifyMiddleware')
 
 
 
@@ -14,5 +15,6 @@ module.exports = {
     authMiddleware,
     updateSubscriptionMiddleware,
     upload,
+    verifyMiddleware,
 
 };

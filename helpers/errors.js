@@ -1,3 +1,11 @@
+class BadRequestError extends Error {
+    constructor(message) {
+        super(message);
+        this.status = 400;
+
+    }
+};
+
 class NotAutorizedError extends Error {
     constructor(message) {
         super(message);
@@ -25,6 +33,7 @@ class NotEniqueMailError extends Error {
 module.exports = {
     NotAutorizedError,
     NotEniqueMailError,
-    NotVerifyError
+    NotVerifyError,
+    BadRequestError
 
 };
